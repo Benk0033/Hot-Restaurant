@@ -1,3 +1,4 @@
+var reservations = [];
 
 
 //----------------- ROUTES START HERE -----------------//
@@ -17,39 +18,31 @@ app.get("/viewTables", function (req, res) {
 });
 
 
-// Displays all characters
-app.get("/api/characters", function (req, res) {
+// Displays the api of tables
+app.get("/api/tables", function (req, res) {
     return res.json(reservations);
 });
 
-// Displays a single character, or returns false
-app.get("/api/characters/:character", function (req, res) {
-    var chosen = req.params.character;
 
-    console.log(chosen);
-
-    for (var i = 0; i < characters.length; i++) {
-        if (chosen === characters[i].routeName) {
-            return res.json(characters[i]);
-        }
-    }
-
-    return res.json(false);
+// Displays the api of tables
+app.get("/api/waitlist", function (req, res) {
+    return res.json(waitList);
 });
 
-// Create New Characters - takes in JSON input
-app.post("/api/characters", function (req, res) {
+
+// Create New Reservations - takes in JSON input
+app.post("/makeReservation", function (req, res) {
     // req.body hosts is equal to the JSON post sent from the user
     // This works because of our body parsing middleware
-    var newcharacter = req.body;
+    var newReservation = req.body;
 
-    // Using a RegEx Pattern to remove spaces from newCharacter
-    // You can read more about RegEx Patterns later https://www.regexbuddy.com/regex.html
-    newcharacter.routeName = newcharacter.name.replace(/\s+/g, "").toLowerCase();
+    // Using a RegEx Pattern to remove spaces from reservation
 
-    console.log(newcharacter);
+    newReservation.routeName = newcharacter.name.replace(/\s+/g, "").toLowerCase();
 
-    characters.push(newcharacter);
+    console.log(newReservation);
 
-    res.json(newcharacter);
+    reservations.push(newReservation);
+
+    res.json(newReservation);
 });
