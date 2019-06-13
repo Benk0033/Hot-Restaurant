@@ -1,5 +1,5 @@
+//array to hold information on reservations
 var reservations = [];
-
 
 //----------------- ROUTES START HERE -----------------//
 // Basic route that sends the user first to the home
@@ -35,10 +35,6 @@ app.post("/makeReservation", function (req, res) {
     // req.body hosts is equal to the JSON post sent from the user
     // This works because of our body parsing middleware
     var newReservation = req.body;
-
-    // Using a RegEx Pattern to remove spaces from reservation
-
-    newReservation.routeName = newcharacter.name.replace(/\s+/g, "").toLowerCase();
 
     console.log(newReservation);
 
