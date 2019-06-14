@@ -7,6 +7,8 @@
     <!-- Latest compiled and minified CSS & JS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets\css\style.css">
+    <link href="https://fonts.googleapis.com/css?family=Julius+Sans+One&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
@@ -16,7 +18,7 @@
 <body>
 
     <div class="container">
-        <div class="jumbotron" class="content" href="javascript:history.go(0)">
+        <div class="jumbotron  text-center jumboText" id="animatedjumbo">
             <h1>Hot Restaurant</h1>
             <!-- add emojis & maybe  -->
             <h3>Book a table now! </h3>
@@ -27,7 +29,14 @@
         </div>
 
     </div>
-
+    <!-- Animated Jumbotron background -->
+    <script src="assets\js\three.r92.min.js"></script>
+    <script src="assets\js\vanta.birds.min.js"></script>
+    <script>
+        VANTA.BIRDS({
+            el: "#animatedjumbo"
+        })
+    </script>
 
 </body>
 
