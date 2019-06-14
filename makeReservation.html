@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Star Wars - Express</title>
+    <title>Hot Restaurant</title>
     <!-- Latest compiled and minified CSS & JS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -43,24 +43,24 @@
 
                             <div class="form-group">
                                 <label for="role">Phone Number</label>
-                                <input type="text" class="form-control" id="role">
+                                <input type="text" class="form-control" id="num">
                             </div>
 
                             <div class="form-group">
                                 <label for="age">Email</label>
-                                <input type="text" class="form-control" id="age">
+                                <input type="text" class="form-control" id="email">
                             </div>
 
                             <div class="form-group">
                                 <label for="force-points">Unique ID</label>
-                                <input type="text" class="form-control" id="force-points">
+                                <input type="text" class="form-control" id="uniqid">
                             </div>
 
                         </form>
                         <br>
                         <div class="text-right">
                             <button type="submit" class="btn btn-primary btn-md" id="add-btn"><span
-                                    class="fa fa-fire"></span> Add to the Force</button>
+                                    class="fa fa-fire"></span> Make Your Reservation</button>
                         </div>
                     </div>
                 </div>
@@ -73,15 +73,15 @@
         // Question: What does this code do?
         $("#add-btn").on("click", function (event) {
             event.preventDefault();
-            var newCharacter = {
+            var newReservation = {
                 name: $("#name").val().trim(),
-                role: $("#role").val().trim(),
-                age: $("#age").val().trim(),
-                forcePoints: $("#force-points").val().trim()
+                role: $("#num").val().trim(),
+                age: $("#email").val().trim(),
+                forcePoints: $("#uniqid").val().trim()
             };
 
             // Question: What does this code do??
-            $.post("/api/characters", newCharacter)
+            $.post("/api/reservation", newReservation)
                 .then(function (data) {
                     console.log("add.html", data);
                     alert("Adding character...");
