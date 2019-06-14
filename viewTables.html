@@ -99,15 +99,16 @@
             // You can read more about RegEx Patterns later https://www.regexbuddy.com/regex.html
             searchedCharacter = searchedCharacter.replace(/\s+/g, "").toLowerCase();
 
+            // dont' think a variation of search is necessar for the reservations page.
             $.get("/api/reservations/" + searchedCharacter, function (data) {
                 console.log(data);
                 //logic for if array.length > 5,    
                 if (data) {
                     $("#stats").show();
                     $("#name").text(data.name);
-                    $("#num").text(data.num);
+                    $("#num").text(data.number);
                     $("#email").text(data.email);
-                    $("#uniqid").text(data.uniqid);
+                    $("#uniqid").text(data.uniqueid);
                 }
                 else {
                     $("#name").text("The force is not strong with this one. Your character was not found.");
