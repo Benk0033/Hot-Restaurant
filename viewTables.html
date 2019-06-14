@@ -53,17 +53,69 @@
                         <h3><strong>Current Reservations</strong></h3>
                     </div>
                     <div class="card-body">
-                        <h2 id="name">Person</h2>
-                        <div id="stats">
-                            <h3><strong>Phone Number:</strong> <span id="num">555-555-5555</span></h3>
-                            <h3><strong>Email:</strong> <span id="email">gnarbar@aol.com</span></h3>
-                            <h3><strong>Unique ID:</strong> <span id="uniqueid">420</span></h3>
-                        </div>
+                        <ol>
+                            <li>
+                                <h2 id="name">Person</h2>
+                                <div id="stats">
+                                    <h3><strong>Phone Number:</strong> <span id="num">555-555-5555</span></h3>
+                                    <h3><strong>Email:</strong> <span id="email">gnarbar@aol.com</span></h3>
+                                    <h3><strong>Unique ID:</strong> <span id="uniqueid">420</span></h3>
+                                </div>
+                            </li>
+                        </ol>
                     </div>
                 </div>
+
+                <br><br>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3><strong>Wait List</strong></h3>
+                    </div>
+                    <div class="card-body">
+                        <ol>
+                            <li>
+                                <h2 id="name">Person</h2>
+                                <div id="stats">
+                                    <h3><strong>Phone Number:</strong> <span id="num">555-555-5555</span></h3>
+                                    <h3><strong>Email:</strong> <span id="email">gnarbar@aol.com</span></h3>
+                                    <h3><strong>Unique ID:</strong> <span id="uniqueid">420</span></h3>
+                                </div>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
+
+    <script>
+        //don't need a search button for reservations, should automatically display upon loading the page
+        $("#search-btn").on("click", function () {
+            var searchedCharacter = $("#character-search").val().trim();
+
+            // Using a RegEx Pattern to remove spaces from searchedCharacter
+            // You can read more about RegEx Patterns later https://www.regexbuddy.com/regex.html
+            searchedCharacter = searchedCharacter.replace(/\s+/g, "").toLowerCase();
+
+            $.get("/api/reservations/" + searchedCharacter, function (data) {
+                console.log(data);
+                //logic for if array.length > 5,    
+                if (data) {
+                    $("#stats").show();
+                    $("#name").text(data.name);
+                    $("#num").text(data.num);
+                    $("#email").text(data.email);
+                    $("#uniqid").text(data.uniqid);
+                }
+                else {
+                    $("#name").text("The force is not strong with this one. Your character was not found.");
+                    $("#stats").hide();
+                }
+            });
+        });
+    </script>
     <!-- Animated Jumbotron background -->
     <script src="assets\js\three.r92.min.js"></script>
     <script src="assets\js\vanta.birds.min.js"></script>
