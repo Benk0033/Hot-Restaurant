@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/Benk0033/Hot-Restaurant/issues"
   },
-  "homepage": "https://github.com/Benk0033/Hot-Restaurant#readme"
+  "homepage": "https://github.com/Benk0033/Hot-Restaurant#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }

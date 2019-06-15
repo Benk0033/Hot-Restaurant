@@ -22,9 +22,9 @@
             <!-- add emojis & maybe  -->
             <h3 class="jumboText">Book a table now! </h3>
             <hr>
-            <a href="/view"><button class="btn btn-danger btn-lg"><span class="fa fa-plus"></span> View
+            <a href="/viewTables"><button class="btn btn-danger btn-lg"><span class="fa fa-plus"></span> View
                     Tables</button></a>
-            <a href="/make"><button class="btn btn-danger btn-lg"><span class="fa fa-plus"></span> Home</button></a>
+            <a href="/"><button class="btn btn-danger btn-lg"><span class="fa fa-plus"></span> Home</button></a>
         </div>
 
         <div class="row">
@@ -69,9 +69,14 @@
 
             </div>
         </div>
+
+        <a href="/api/tables"><span class="fa fa-plus"></span>
+            API Table Link</a>
+        <a href="/api/waitlist"><span class="fa fa-plus"></span>API Wait List</a>
     </div>
 
     <script type="text/javascript">
+
         // Question: What does this code do?
         $("#add-btn").on("click", function (event) {
             event.preventDefault();
@@ -82,14 +87,26 @@
                 uniqueId: $("#uniqid").val().trim()
             };
 
-            // Question: What does this code do??
-            $.post("/api/reservation", newReservation)
-                .then(function (data) {
-                    console.log("add.html", data);
-                    alert("Adding Reservation...");
-                });
+            $.get("/api/tables/", function (data) {
+                console.log(data.length);
+
+                if (data.length < 5) {
+                    $.post("/api/tables", newReservation)
+                        .then(function (data) {
+                            console.log("add.html", data);
+                            alert("Adding Reservation...");
+                        });
+                } else {
+                    $.post("/api/waitlist", newReservation)
+                        .then(function (data) {
+                            console.log("add.html", data);
+                            alert("Adding to waitlist...");
+                        });
+                }
+            });
         });
     </script>
+
     <!-- Animated Jumbotron background -->
     <script src="assets\js\three.r92.min.js"></script>
     <script src="assets\js\vanta.birds.min.js"></script>
