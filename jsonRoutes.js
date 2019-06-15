@@ -6,7 +6,7 @@ var require = ("express");
 var app = express();
 
 
-app.post("./api/viewTables", function (req, res) {
+app.post("/api/viewTables", function (req, res) {
 
     req.json(reservations)
     //do I need to store this in req.body?
@@ -20,6 +20,7 @@ app.post("./api/viewTables", function (req, res) {
     else {
         waitlist.push(newReservation);
         res.json(waitlist);
+        console.log("Reservation was added to waitlist")
     }
 
 });
