@@ -13,6 +13,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 
+var tables = [];
+
+var waitlist = [];
+
 // Routes
 // =============================================================
 
@@ -29,18 +33,69 @@ app.get("/makeReservation", function (req, res) {
     res.sendFile(path.join(__dirname, "makeReservation.html"));
 });
 
-// Displays all current reservations api
+// Displays all current tables api
 app.get("/api/tables", function (req, res) {
     return res.json(tables);
 });
 
-// Displays all current reservations api
+// Displays all current waitlist api
 app.get("/api/waitlist", function (req, res) {
     return res.json(waitlist);
 });
+
+// Displays all current waitlist api
+app.get("/api/clear", function (req, res) {
+    tables = [];
+    waitlist = [];
+    res.sendFile(path.join(__dirname, "viewTables.html"));
+});
+
+// Create New reservatons - takes in JSON input
+app.post("/api/tables", function (req, res) {
+    // req.body hosts is equal to the JSON post sent from the user
+    // This works because of our body parsing middleware
+    var newReservation = req.body;
+
+    console.log(tables.length);
+
+    if (tables.length < 5) {
+
+        tables.push(newReservation);
+        res.json(newReservation);
+
+    }
+    else {
+        app.post("/api/waitlist", function (req, res) {
+
+            var newReservation = req.body;
+
+            console.log(newReservation);
+
+            waitlist.push(newReservation);
+
+            res.json(newReservation);
+        });
+
+    };
+
+    // res.json(newReservation);
+});
+
+app.post("/api/waitlist", function (req, res) {
+
+    var newReservation = req.body;
+
+    console.log(newReservation);
+
+    waitlist.push(newReservation);
+
+    res.json(newReservation);
+});
+
 
 // Starts the server to begin listening
 // =============================================================
 app.listen(PORT, function () {
     console.log("App listening on PORT " + PORT);
 });
+

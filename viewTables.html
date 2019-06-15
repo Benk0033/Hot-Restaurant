@@ -31,39 +31,65 @@
         <div class="row">
 
             <div class="col-12">
-                <!-- 
-                <div class="card mb-4">
-                    <div class="card-header">
-                        <h3><strong>Character Search</strong></h3>
-                    </div>
-                    <div class="card-body">
-                        <input type="text" id="character-search" class="form-control">
-                        <br>
-                        <div class="text-right">
-                            <button type="submit" class="btn btn-primary btn-md" id="search-btn"><span
-                                    class="fa fa-search"></span> Search
-                                Your Feelings. You know it is true.</button>
-
-                        </div>
-                    </div>
-                </div> -->
 
                 <div class="card">
                     <div class="card-header">
                         <h3><strong>Current Reservations</strong></h3>
                     </div>
-                    <div class="card-body">
-                        <h2 id="name">Person</h2>
-                        <div id="stats">
-                            <h3><strong>Phone Number:</strong> <span id="num">555-555-5555</span></h3>
-                            <h3><strong>Email:</strong> <span id="email">gnarbar@aol.com</span></h3>
-                            <h3><strong>Unique ID:</strong> <span id="uniqueid">420</span></h3>
-                        </div>
+                    <div class="card-body" id="reservations">
+                    </div>
+                </div>
+
+                <br>
+                <div class="card">
+                    <div class="card-header">
+                        <h3><strong>Waiting List</strong></h3>
+                    </div>
+                    <div class="card-body" id="waitlist">
                     </div>
                 </div>
             </div>
         </div>
+
+        <a href="/api/tables"><span class="fa fa-plus"></span>
+            API Table Link</a>
+        <a href="/api/waitlist"><span class="fa fa-plus"></span>API Wait List</a>
+        <a href="/api/clear"><span class="fa fa-plus"></span>Clear Tables</a>
     </div>
+
+    <script type="text/javascript">
+
+        $.get("/api/tables/", function (data) {
+            console.log(data[0].name);
+
+            for (var i = 0; i < data.length; i++) {
+
+                var reserveList = $("#reservations")
+
+                var reserveDiv = $("<h2 class='name'>" + data[i].name + "</h2><div class='stats'><h3><strong>Phone Number:</strong> <span class='num'>" + data[i].number + "</span></h3><h3><strong>Email:</strong> <span class='email'>" + data[i].email + "</span></h3><h3><strong>Unique ID:</strong> <span class='uniqueid'>" + data[i].uniqueId + "</span></h3></div ><br><hr>")
+
+                reserveList.append(reserveDiv);
+
+            };
+
+        });
+
+        $.get("/api/waitlist/", function (data) {
+            console.log(data[0].name);
+
+            for (var i = 0; i < data.length; i++) {
+
+                var waitList = $("#waitlist")
+
+                var waitDiv = $("<h2 class='name2'>" + data[i].name + "</h2><div class='stats2'><h3><strong>Phone Number:</strong> <span class='num2'>" + data[i].number + "</span></h3><h3><strong>Email:</strong> <span class='email2'>" + data[i].email + "</span></h3><h3><strong>Unique ID:</strong> <span class='uniqueid2'>" + data[i].uniqueId + "</span></h3></div ><br><hr>")
+
+                waitList.append(waitDiv);
+
+            };
+
+        });
+    </script>
+
     <!-- Animated Jumbotron background -->
     <script src="assets\js\three.r92.min.js"></script>
     <script src="assets\js\vanta.birds.min.js"></script>
