@@ -2,6 +2,10 @@
 var require = ("express");
 
 //can we import the reservations?
+var waitlist = require("./server.js");
+var reservations = require("./server.js");
+var tables = require("./server.js");
+
 
 var app = express();
 
