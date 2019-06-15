@@ -1,12 +1,11 @@
 //dependencies
-var express = require("express");
 var path = require("path");
 
-//set up the express npm
-var app = express();
+//-----HTML ROUTES-----//
 
-//code here to deploy to heroku
-
+//express to handle data parsing
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 //basic route that sends to the home page
 app.get("/", function (req, res) {
