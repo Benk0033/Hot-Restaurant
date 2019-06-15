@@ -20,7 +20,7 @@ app.post("/api/viewTables", function (req, res) {
     else {
         waitlist.push(newReservation);
         res.json(waitlist);
-        console.log("Reservation was added to waitlist")
+        res.send("Reservations have reached capacity. Reservation was added to waitlist.")
     }
 
 });
